@@ -4,7 +4,7 @@
 Run it using source runall.sh. It creates (besides intermediate steps) a final.dat file
 
 ## New version 
-Run it just by executing the Python code. It creates a dmap.csv file, containing cryID, rouID(2 x cryID + 0/1), local (1-20) and global (20 x board + local) channel numbers, besides all the info coming from the Excel file) 
+Run it just by executing the Python code. It creates a dmap.csv file, containing cryID, rouID(2 x cryID + 0/1), local (1-20) and global (20 x board + local) channel numbers, besides all the info coming from the original Excel file.
 
 ## Requirements
 Files needed: "Pasciuto"-like .xlsx file, crystalpos.h for the original version and crystalpos.py for the new version.
