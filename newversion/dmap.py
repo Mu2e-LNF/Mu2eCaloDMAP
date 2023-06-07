@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import crystalpos
 
-df = pd.read_excel("../Crystals naming compact4.xlsx", nrows=10) #1348)
+df = pd.read_excel("../Crystals naming compact4.xlsx", nrows=1348)
 
 '''
 if( Height==0) localch = Row*4+Loc;

@@ -43,7 +43,7 @@ void ReaderDmap::ReadFile(string &fileName){
       BoardID[j][1] = 0;
     }
 
-    for(int CryId=0; CryId< 1348; CryId++){
+    for(int CryId=0; CryId< 674; CryId++){
       //cout << CryId << " " << BoardID[CryId][0] << " " << BoardID[CryId][1] << endl; 
     }
     cout << "#==========================================================" << endl;
@@ -63,7 +63,7 @@ void ReaderDmap::ReadFile(string &fileName){
 	   BoardNum = phi*40 + crate*8+board*2+sensor;
 	   //if( BoardNum>80 )cout << " Board# " << BoardNum << " " <<  phi << " " << crate << " " << board << " " << sensor << endl;
 
-	   if(1){
+	   if( row< 1348 && BoardNum <=80){
 	     printf(" %*d  %*d  %*d  %*d %*d %*d  %*d %*d %*d %*d \n",3,daqid, 3,disk,3,phi, 4,crate, 5,board, 5,sensor, 5,chan, 5,Ix, 5,Iy, 5,CryId);
 	     // cout  << daqid << " " <<  CryId << " " << BoardNum << " " << sensor << endl;
 	      if( sensor == 0) Daqid2Cryid[daqid] = CryId;
@@ -75,9 +75,9 @@ void ReaderDmap::ReadFile(string &fileName){
 
    file.close();
 
-   for(int id=0; id< 1348; id++){
+/*   for(int id=0; id< 1348; id++){
      cout << " " << id << " " << BoardID[id][0] << " " << BoardID[id][1] << endl; 
-   }
+   }*/
 }
 
 pair<double,double> ReaderDmap::GetData(string address){
