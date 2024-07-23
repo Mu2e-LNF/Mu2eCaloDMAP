@@ -87,11 +87,11 @@ print( list(df_dirac.columns.values))
 
 for feeIdx in range(0,len(df)):
     for daqIdx in range(0,len(df_dirac)):
-        if df_dirac["Disk"].iloc[daqIdx]==df["disk"].iloc[feeIdx] and df_dirac["Phi"].iloc[daqIdx]==df["phi"].iloc[feeIdx]:
-            if df_dirac["Crate"].iloc[daqIdx]==df["crate"].iloc[feeIdx] and df_dirac["Board"].iloc[daqIdx]==df["board"].iloc[feeIdx]:
-                if df_dirac["Sensor"].iloc[daqIdx]==df["sensor"].iloc[feeIdx]:
-                    df["BoardIdx"].at[feeIdx] = df_dirac["BoardIdx"].iloc[daqIdx]
-                    #print(df["disk"].iloc[feeIdx],df["phi"].iloc[feeIdx],df["crate"].iloc[feeIdx],df["board"].iloc[feeIdx],df["sensor"].iloc[feeIdx],df["BoardIdx"].at[feeIdx])
+        if df_dirac["Disk"].iat[daqIdx]==df["disk"].iat[feeIdx] and df_dirac["Phi"].iat[daqIdx]==df["phi"].iat[feeIdx]:
+            if df_dirac["Crate"].iat[daqIdx]==df["crate"].iat[feeIdx] and df_dirac["Board"].iat[daqIdx]==df["board"].iat[feeIdx]:
+                if df_dirac["Sensor"].iat[daqIdx]==df["sensor"].iat[feeIdx]:
+                    df["BoardIdx"].at[feeIdx] = df_dirac["BoardIdx"].iat[daqIdx]
+                    #print(df["disk"].iat[feeIdx],df["phi"].iat[feeIdx],df["crate"].iat[feeIdx],df["board"].iat[feeIdx],df["sensor"].iat[feeIdx],df["BoardIdx"].at[feeIdx])
 
 # Dump of BoardIdx map
 print("Disk Phi Crate Board Sensor BoardIdx")
@@ -186,14 +186,15 @@ df = df.assign(Type="CAL")
 
 for feeIdx in range(0,len(df)):
     for offIdx in range(0,len(df_offl)):
-        if df_offl["idlay"].iloc[offIdx]==df["y"].iloc[feeIdx] and df_offl["idcol"].iloc[offIdx]==df["x"].iloc[feeIdx]:
-            df["xcry"].at[feeIdx] = df_offl["xpos"].iloc[offIdx]
-            df["ycry"].at[feeIdx] = df_offl["ypos"].iloc[offIdx]
-            df["cryID"].at[feeIdx] = df_offl["cryid"].iloc[offIdx]
+        if df_offl["idlay"].iat[offIdx]==df["y"].iat[feeIdx] and df_offl["idcol"].iat[offIdx]==df["x"].iat[feeIdx]:
+            df["xcry"].at[feeIdx] = df_offl["xpos"].iat[offIdx]
+            df["ycry"].at[feeIdx] = df_offl["ypos"].iat[offIdx]
+            df["cryID"].at[feeIdx] = df_offl["cryid"].iat[offIdx]
 
-    # Put CAPHRI flag for the 4 LYSO crystals: Layers 4 and 32, Columns 0 and 24
-    if ( df["y"].iloc[feeIdx]==4 or df["y"].iloc[feeIdx]==32 ) and ( df["x"].iloc[feeIdx]==0 or df["x"].iloc[feeIdx]==24 ):
-        df["Type"].at[feeIdx] = "CAPHRI"
+    # Put CAPHRI flag for the 4 LYSO crystals of Disk 0: Layers 4 and 32, Columns 0 and 24
+    if ( df["disk"].iat[feeIdx]==0 ):
+        if ( df["y"].iat[feeIdx]==4 or df["y"].iat[feeIdx]==32 ) and ( df["x"].iat[feeIdx]==0 or df["x"].iat[feeIdx]==24 ):
+            df["Type"].at[feeIdx] = "CAPHRI"
     # Flag pin-diodes
     if ( pd.isnull(df.loc[feeIdx,"y"]) ):
         df["Type"].at[feeIdx] = "PIN-DIODE"
